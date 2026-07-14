@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Museum of Talat ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Music Control -->
+    <button id="music-toggle" class="music-control" title="Toggle Music">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="images/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ==================== ROOM 1: GRAND ENTRANCE ==================== -->
+    <section id="room-1" class="room active">
+        <div class="bg-overlay entrance-overlay"></div>
+        <div class="particle-container" id="entrance-particles"></div>
+        <div class="spotlight"></div>
+        <div class="entrance-content">
+            <h1 class="welcome-text" id="welcome-line1">Welcome To</h1>
+            <h1 class="welcome-text museum-title" id="welcome-line2">The Museum Of Talat ❤️</h1>
+            <div class="door-container" id="door-container">
+                <div class="door-frame">
+                    <div class="door door-left" id="door-left"></div>
+                    <div class="door door-right" id="door-right"></div>
+                    <div class="door-glow" id="door-glow"></div>
+                </div>
+            </div>
+            <button class="museum-btn enter-btn" id="enter-btn" style="opacity:0;pointer-events:none;">
+                Enter Museum
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 2: SMILE GALLERY ==================== -->
+    <section id="room-2" class="room">
+        <div class="bg-overlay gallery-overlay"></div>
+        <div class="particle-container" id="gallery-particles"></div>
+        <div class="gallery-content">
+            <h2 class="room-title">The Smile Gallery</h2>
+            <p class="room-subtitle">Click on each frame to reveal a memory</p>
+            <div class="gallery-grid">
+                <div class="gallery-frame" data-index="0">
+                    <div class="frame-inner">
+                        <img src="images/gallery-1.jpg" alt="Gallery 1">
+                    </div>
+                    <div class="frame-label">The Smile</div>
+                </div>
+                <div class="gallery-frame" data-index="1">
+                    <div class="frame-inner">
+                        <img src="images/gallery-2.jpg" alt="Gallery 2">
+                    </div>
+                    <div class="frame-label">The Bloom</div>
+                </div>
+                <div class="gallery-frame" data-index="2">
+                    <div class="frame-inner">
+                        <img src="images/gallery-3.jpg" alt="Gallery 3">
+                    </div>
+                    <div class="frame-label">The Laughter</div>
+                </div>
+                <div class="gallery-frame" data-index="3">
+                    <div class="frame-inner">
+                        <img src="images/gallery-4.jpg" alt="Gallery 4">
+                    </div>
+                    <div class="frame-label">The Starlight</div>
+                </div>
+                <div class="gallery-frame" data-index="4">
+                    <div class="frame-inner">
+                        <img src="images/gallery-5.jpg" alt="Gallery 5">
+                    </div>
+                    <div class="frame-label">The Warmth</div>
+                </div>
+                <div class="gallery-frame" data-index="5">
+                    <div class="frame-inner">
+                        <img src="images/gallery-6.jpg" alt="Gallery 6">
+                    </div>
+                    <div class="frame-label">The Mind</div>
+                </div>
+            </div>
+            <button class="museum-btn nav-btn" id="gallery-next" style="display:none;">
+                Continue →
+            </button>
+        </div>
+        <!-- Photo Modal -->
+        <div class="photo-modal" id="photo-modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <img id="modal-img" src="" alt="">
+                <p class="modal-message" id="modal-message"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 3: BIRTHDAY EXHIBIT ==================== -->
+    <section id="room-3" class="room">
+        <div class="bg-overlay birthday-overlay"></div>
+        <div class="spotlight-beam" id="spotlight-beam"></div>
+        <div class="particle-container" id="birthday-particles"></div>
+        <div class="birthday-content">
+            <div class="glass-showcase" id="glass-showcase">
+                <div class="showcase-glass"></div>
+                <div class="number-19" id="number-19">19</div>
+                <div class="crack-overlay" id="crack-overlay">
+                    <svg viewBox="0 0 300 300" class="crack-svg">
+                        <path class="crack-line" d="M150,0 L145,80 L155,120 L140,180 L150,250 L148,300"/>
+                        <path class="crack-line" d="M0,150 L80,145 L120,155 L180,140 L250,150 L300,148"/>
+                        <path class="crack-line" d="M50,50 L100,100 L80,150 L120,200 L100,250"/>
+                        <path class="crack-line" d="M250,50 L200,100 L220,150 L180,200 L200,250"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="birthday-message" id="birthday-message">
+                <h2 class="birthday-line1">Happy Birthday</h2>
+                <h2 class="birthday-line2">Talat ❤️</h2>
+            </div>
+            <button class="museum-btn nav-btn" id="birthday-next" style="display:none;">
+                Enter the Wish Room →
+            </button>
+        </div>
+        <canvas id="celebration-canvas"></canvas>
+    </section>
+
+    <!-- ==================== ROOM 4: WISH ROOM ==================== -->
+    <section id="room-4" class="room">
+        <div class="bg-overlay wish-overlay"></div>
+        <div class="paper-texture"></div>
+        <div class="particle-container" id="wish-particles"></div>
+        <div class="wish-content">
+            <h2 class="room-title wish-title">The Wish Room</h2>
+            <div class="wishes-wall" id="wishes-wall">
+                <div class="wish-note" data-wish="0" style="--rotation:-3deg;--top:8%;--left:5%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="1" style="--rotation:2deg;--top:5%;--left:38%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="2" style="--rotation:-1deg;--top:12%;--left:70%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="3" style="--rotation:3deg;--top:38%;--left:8%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="4" style="--rotation:-2deg;--top:35%;--left:40%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="5" style="--rotation:1deg;--top:40%;--left:72%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="6" style="--rotation:-4deg;--top:65%;--left:15%;">
+                    <span class="wish-text"></span>
+                </div>
+                <div class="wish-note" data-wish="7" style="--rotation:2deg;--top:68%;--left:55%;">
+                    <span class="wish-text"></span>
+                </div>
+            </div>
+            <button class="museum-btn nav-btn" id="wish-next" style="display:none;">
+                Enter the Memory Vault →
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 5: MEMORY VAULT ==================== -->
+    <section id="room-5" class="room">
+        <div class="bg-overlay vault-overlay"></div>
+        <div class="particle-container" id="vault-particles"></div>
+        <div class="vault-content">
+            <h2 class="room-title vault-title">The Memory Vault</h2>
+            <p class="room-subtitle vault-sub">Click the drawers to uncover memories</p>
+            <div class="drawers-grid">
+                <div class="drawer" data-memory="0">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">First Glance 📸</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-4.jpg" alt="Memory">
+                            <p class="polaroid-caption">The moment I first saw you, everything changed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer" data-memory="1">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">Your Laughter 🎵</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-3.jpg" alt="Memory">
+                            <p class="polaroid-caption">Your laughter is my favorite sound in the universe</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer" data-memory="2">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">Midnight Talks 🌙</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-6.jpg" alt="Memory">
+                            <p class="polaroid-caption">Our late-night conversations mean everything to me</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer" data-memory="3">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">Your Kindness 💝</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-2.jpg" alt="Memory">
+                            <p class="polaroid-caption">Your kindness inspires me every single day</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer" data-memory="4">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">Little Things ✨</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-5.jpg" alt="Memory">
+                            <p class="polaroid-caption">It's the little things you do that make me fall deeper</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer" data-memory="5">
+                    <div class="drawer-front">
+                        <div class="drawer-handle"></div>
+                        <div class="drawer-label">Us Together 💕</div>
+                    </div>
+                    <div class="drawer-content">
+                        <div class="polaroid">
+                            <img src="images/gallery-1.jpg" alt="Memory">
+                            <p class="polaroid-caption">Every moment with you feels like home</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="museum-btn nav-btn" id="vault-next" style="display:none;">
+                Enter the Heart Chamber →
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 6: HEART CHAMBER ==================== -->
+    <section id="room-6" class="room">
+        <div class="bg-overlay heart-overlay"></div>
+        <div class="particle-container" id="heart-particles"></div>
+        <div class="heart-content">
+            <h2 class="room-title heart-title">The Heart Chamber</h2>
+            <p class="room-subtitle heart-sub">Tap the heart to reveal what it holds</p>
+            <div class="crystal-heart-container" id="crystal-heart-container">
+                <svg class="crystal-heart" id="crystal-heart" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffb6c1;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#ff69b4;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#c71585;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="heartGlow">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path class="heart-path" d="M100,180 L20,90 C5,65 5,35 30,20 C55,5 85,15 100,40 C115,15 145,5 170,20 C195,35 195,65 180,90 L100,180Z" fill="url(#heartGrad)" filter="url(#heartGlow)"/>
+                    <path class="heart-facet" d="M100,180 L60,60 L100,40Z" fill="rgba(255,255,255,0.2)"/>
+                    <path class="heart-facet" d="M100,180 L140,60 L100,40Z" fill="rgba(255,255,255,0.1)"/>
+                    <path class="heart-facet" d="M60,60 L30,20 L100,40Z" fill="rgba(255,255,255,0.15)"/>
+                    <path class="heart-facet" d="M140,60 L170,20 L100,40Z" fill="rgba(255,255,255,0.25)"/>
+                </svg>
+                <div class="heart-message" id="heart-message">
+                    <p>You hold my heart, always ❤️</p>
+                </div>
+                <div class="heart-light-burst" id="heart-light-burst"></div>
+            </div>
+            <button class="museum-btn nav-btn" id="heart-next" style="display:none;">
+                Follow the Path →
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 7: SECRET LETTER ROOM ==================== -->
+    <section id="room-7" class="room">
+        <div class="bg-overlay letter-overlay"></div>
+        <div class="particle-container" id="letter-particles"></div>
+        <div class="letter-content">
+            <h2 class="room-title letter-title">The Secret Letter</h2>
+            <div class="pedestal-scene">
+                <div class="pedestal"></div>
+                <div class="envelope-container" id="envelope-container">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-body"></div>
+                        <div class="envelope-flap" id="envelope-flap"></div>
+                        <div class="wax-seal" id="wax-seal">
+                            <div class="seal-heart">❤️</div>
+                            <div class="crack-lines" id="seal-cracks"></div>
+                        </div>
+                    </div>
+                    <div class="letter-paper" id="letter-paper">
+                        <div class="letter-text" id="letter-text"></div>
+                        <div class="letter-signature">Forever Yours,<br><span class="signature-name">Ashish ❤️</span></div>
+                    </div>
+                </div>
+            </div>
+            <p class="letter-hint" id="letter-hint">Tap the envelope to open</p>
+            <button class="museum-btn nav-btn" id="letter-next" style="display:none;">
+                Enter the Star Room →
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== ROOM 8: STAR ROOM ==================== -->
+    <section id="room-8" class="room">
+        <div class="bg-overlay stars-overlay"></div>
+        <canvas id="stars-canvas"></canvas>
+        <div class="stars-content">
+            <div class="constellation-text" id="constellation-text">
+                <div class="constellation-line" id="const-line1">TALAT ❤️</div>
+                <div class="constellation-line" id="const-line2">Happy 19th Birthday</div>
+                <div class="constellation-line" id="const-line3">Love, Ashish</div>
+            </div>
+            <div class="final-message" id="final-message">
+                <h2 class="final-title">The End</h2>
+                <p class="final-subtitle">Thank you for visiting</p>
+                <p class="final-museum-name">The Museum of Talat ❤️</p>
+                <button class="museum-btn restart-btn" id="restart-btn">
+                    Visit Again
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition Overlay -->
+    <div class="transition-overlay" id="transition-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
